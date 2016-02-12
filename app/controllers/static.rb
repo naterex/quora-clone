@@ -1,3 +1,3 @@
 get '/' do
-  erb :"static/signup"
+  erb :"static/index"
 end
