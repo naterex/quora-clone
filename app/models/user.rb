@@ -1,4 +1,9 @@
+
 class User < ActiveRecord::Base
+  validates_presence_of :name, message: "Error: name can't be blank."
+  validates_presence_of :email, message: "Error: email can't be blank."
+  validates_uniqueness_of :email, message: "Error: email has already been used."
+  validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Error: incorrect email format."
   has_secure_password
 
   # users.password_hash in the database is a :string
@@ -20,21 +25,6 @@ class User < ActiveRecord::Base
     @user.password = random_password
     @user.save!
     Mailer.create_and_deliver_password_change(@user, random_password)
-  end
-
-  def create
-    @user = User.new(params[:user])
-    @user.password = params[:password]
-    @user.save!
-  end
-
-  def login
-    @user = User.find_by_email(params[:email])
-    if @user.password == params[:password]
-      give_token
-    else
-      redirect_to home_url
-    end
   end
 
 end
