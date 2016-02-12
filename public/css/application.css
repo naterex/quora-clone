@@ -1,0 +1,8 @@
+section.register .panel .panel-heading {
+  background: white;
+  border-bottom: none;
+}
+
+section.register .panel .panel-heading h3 {
+  font-size: 2.5rem;
+}
