@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img class="" src="./img/quora.png" alt="Quora image">
       </a>
     </div><!-- .navbar-header -->
@@ -35,6 +35,7 @@
           </li>
 
           <!-- NOT WORKING -->
+          <h1>HELP</h1>
           <form class="navbar-form navbar-right" action="/users/new" method="get" role="form" accept-charset="utf-8">
             <button type="submit" class="btn btn-default">Sign Up</button>
           </form>
@@ -58,7 +59,7 @@
             <li><a href="#">My Answers</a></li>
             <li><a href="#">My Votes</a></li>
             <li class="divider"></li>
-            <li><a href="/users/<%= @current_user.id %>" >Edit Profile</a></li>
+            <li><a href="/users/<%= @current_user.id %>">Edit Profile</a></li>
           </ul>
         </li>
       </ul>

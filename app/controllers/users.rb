@@ -1,3 +1,5 @@
+require 'byebug'
+
 get "/users" do
   puts "[LOG] Getting /users"
   puts "[LOG] Params: #{params.inspect}"
@@ -37,8 +39,10 @@ post "/users/login" do
   user = User.authenticate(params[:user][:email], params[:user][:password])
 
   if user
+    byebug
     session[:user_id] = user.id
-    redirect "/users/#{user.id}" # correct to use redirect to pass users/id method?
+    puts "USER ID: #{user.id}"  # HELP
+    redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
   else
     redirect "/"
   end
