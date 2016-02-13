@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <table class="table table-bordered table-striped">
-      <caption>Users</caption>
+      <caption>User</caption>
       <thead>
         <tr>
           <th>#</th>
@@ -12,15 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <% @users.each do |user| %>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
+          <td><%= @user.id %></td>
+          <td><%= @user.name %></td>
+          <td><%= @user.email %></td>
           <td>Delete button</td>
-          <td><a href="/users/<%= user.id %>"><button class="btn btn-primary">Edit</button></a></td>
+          <td>Edit button</td>
         </tr>
-        <% end %>
       </tbody>
     </table>
   </div>
