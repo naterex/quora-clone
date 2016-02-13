@@ -1,3 +1,57 @@
+/*
+ * General/Utility Styles
+*/
+
+* {
+  /*-moz-box-sizing: border-box; /* Firexfox */
+  /*-webkit-box-sizing: border-box;  /* Safari/Chrome/iOS/Android */
+  /*box-sizing: border-box; /* IE */
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 80px; /* same height as footer */
+  background: #F5F5F5;
+}
+
+nav.navbar div.navbar-header .navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+
+nav.navbar div.navbar-header .navbar-brand a img {
+  /*max-width: 100px;*/
+  height: 100%;
+  width: 100%;
+  padding: 7px 15px;
+  /* probably not needed anymore, but doesn't hurt */
+}
+
+nav.navbar div.navbar-collapse.in {
+  overflow: hidden; /* remove scrollbar from collapsed navbar*/
+}
+
+nav.navbar div.navbar-collapse {
+  margin-right: -3rem; /* move navbar to far right of page */
+}
+
+nav.navbar div.navbar-collapse ul li:first-child p {
+  margin-left: -1.5rem; /* reduce forgot password? margin to fit ipad vieww */
+  margin-right: -1.5rem;
+}
+
+nav.navbar div.navbar-collapse ul li div.input-group {
+  width: 19.5rem;  /* reduce login input width to fit ipad view */
+}
+
+nav.navbar div.navbar-collapse ul div.navbar-form {
+  border: none;
+  margin-left: -2rem;
+}
+
 section.register .panel .panel-heading {
   background: white;
   border-bottom: none;
@@ -5,4 +59,26 @@ section.register .panel .panel-heading {
 
 section.register .panel .panel-heading h3 {
   font-size: 2.5rem;
+}
+
+footer {
+  background: #34495e;
+  width: 100%;
+  bottom: 0;
+  height: 80px;
+  position: absolute; /* cannot use relative, will float up if no content */
+  padding: 2rem 0 0 0;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+footer a {
+  font-weight: bold;
+  color: white;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: #ecf0f1;
 }

@@ -12,15 +12,16 @@
   <link rel="stylesheet" href="./css/application.css">
 </head>
 <body>
+
+  <%= erb :"partials/navbar" %>
+
   <main>
     <div class="container">
       <%= yield %>
     </div>
   </main>
 
-  <footer>
-    <!-- Made with <span class="glyphicon glyphicon-heart"></span> by <a href="http://www.natewelling.com" target="_blank">Nate Welling</a> -->
-  </footer>
+  <%= erb :"partials/footer" %>
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
