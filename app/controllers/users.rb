@@ -22,6 +22,44 @@ get "/users/:id" do
   erb :"static/user"
 end
 
+# NOT COMPLETE
+get "/users/edit/:id" do
+  puts "[LOG] Getting /users/edit/:id"
+  puts "[LOG] Params: #{params.inspect}"
+  @user = User.find(params[:user][:id])
+
+  erb :"static/edit"
+end
+
+# NOT COMPLETE
+post "/users/update" do
+  puts "[LOG] Getting /users/update"
+  puts "[LOG] Params: #{params.inspect}"
+
+  user = User.find(params[:user][:id])
+
+  if user.save?
+    redirect "/users/#{user.id}"
+  else
+    redirect "/users/edit"
+  end
+end
+
+# NOT COMPLETE
+delete "/users/delete" do
+  puts "[LOG] Getting /users/"
+  puts "[LOG] Params: #{params.inspect}"
+
+  user = User.find(params[:user][:id])
+  user.destroy
+
+  if user.destroyed?
+    redirect "/users/logout"
+  else
+    redirect "/users/edit"
+  end
+end
+
 post "/users/signup" do
   puts "[LOG] Getting /users/signup"
   puts "[LOG] Params: #{params.inspect}"
@@ -43,7 +81,8 @@ post "/users/login" do
   if user
     # byebug
     session[:user_id] = user.id
-    redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
+    redirect "/"
+    # redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
   else
     redirect "/"
   end

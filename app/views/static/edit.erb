@@ -1,0 +1,48 @@
+<section class="user">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default white-panel-heading">
+      <center>
+      <div class="panel-heading">
+          <img class="img-circle img-responsive" src="http://placehold.it/150x150" alt="profile pic">
+          <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      </center>
+      <div class="panel-body">
+        <form class="form-horizontal" action="/users/update" method="post" accept-charset="utf-8">
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input name="user[name]" type="text" placeholder="<%= user.name %>" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input name="user[email]" type="email" placeholder="<%= user.email %>" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input name="user[password]" type="password" placeholder="<%= user.password %>" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input name="user[password_confirmation]" type="password" placeholder="confirm password" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+              <button id="save" type="submit" name="save" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Save</button>
+              <a href=""><button id="cancel" name="cancel" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</button></a>
+            </div>
+          </div>
+        </form>
+      </div><!-- .panel-body -->
+    </div><!-- .panel -->
+  </div><!-- .col-sm-6 -->
+
+</section>

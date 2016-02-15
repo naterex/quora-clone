@@ -19,13 +19,19 @@
         </form></p>
       </div>
       </center>
-      <div class="panel-footer">
-        <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete Profile</a>
+      <div class="panel-footer clearfix">
+        <span class="pull-left">
+        <form action="/users/delete" method="delete" role="form" accept-charset="utf-8">
+          <button type="submit" data-original-title="Remove this user" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete Profile</button>
+        </form>
+        </span>
         <span class="pull-right">
-          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
+          <form action="/users/edit/:id" method="get" role="form" accept-charset="utf-8">
+            <input name="user[id]" type="submit" data-original-title="Edit this user" data-toggle="tooltip" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit Profile</input>
+          </form>
         </span>
       </div><!-- .panel-footer -->
-    </div>
-  </div>
+    </div><!-- .panel -->
+  </div><!-- .col-sm-6 -->
 
 </section>
