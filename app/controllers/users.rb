@@ -1,6 +1,6 @@
 # create#new
 get "/users/new" do
-  erb :"static/signup"
+  erb :"users/signup"
 end
 
 # create#create
@@ -23,7 +23,7 @@ get "/users/:id" do
   puts "[LOG] Params: #{params.inspect}"
   # @user = User.find(params[:id])
   @user = current_user()
-  erb :"static/user"
+  erb :"users/user"
 end
 
 # read#index
@@ -33,7 +33,7 @@ get "/users" do
 
   @users = User.all
   @users = @users.sort_by{ |attribute| attribute[:id] }.reverse # show last added user at top of list
-  erb :"static/users"
+  erb :"users/users"
 end
 
 
@@ -44,7 +44,7 @@ get "/users/:id/edit" do
   puts "[LOG] Params: #{params.inspect}"
   @user = User.find(params[:user][:id])
 
-  erb :"static/user_edit"
+  erb :"users/user_edit"
 end
 
 # NOT COMPLETE

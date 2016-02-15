@@ -1,7 +1,7 @@
 # create#new
 get "/users/:user_id/questions/new" do
   @user = current_user()
-  erb :"static/question_new"
+  erb :"questions/question_new"
 end
 
 # create#create
@@ -21,7 +21,7 @@ get "/users/:user_id/questions/:id" do
   puts "[LOG] Getting /questions/:id"
   puts "[LOG] Params: #{params.inspect}"
 
-  erb :"static/question"
+  erb :"questions/question"
 end
 
 # read#index
@@ -31,7 +31,7 @@ get "/users/:user_id/questions" do
 
   @questions = Question.all
   @questions = @questions.sort_by{ |attribute| attribute[:id] }.reverse # show last added question at top of list
-  erb :"static/questions"
+  erb :"questions/questions"
 end
 
 # update#edit
@@ -39,7 +39,7 @@ get "/users/:user_id/questions/:id/edit" do
   puts "[LOG] Getting /questions/:id/edit"
   puts "[LOG] Params: #{params.inspect}"
 
-  erb :"static/question_edit"
+  erb :"questions/question_edit"
 end
 
 # update#update
