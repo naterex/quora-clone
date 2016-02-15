@@ -1,27 +1,31 @@
 <section class="user">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <table class="table table-bordered table-striped">
-        <caption>User</caption>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @user.id %></td>
-            <td><%= @user.name %></td>
-            <td><%= @user.email %></td>
-            <td>Delete button</td>
-            <td>Edit button</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default white-panel-heading">
+      <center>
+      <div class="panel-heading">
+          <img class="img-circle img-responsive" src="http://placehold.it/150x150" alt="profile pic">
+          <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @user.email %></p>
+        <p><form class="" action="/users/new" method="get" role="form" accept-charset="utf-8">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span> Questions</button>
+        </form></p>
+        <p><form class="" action="/users/new" method="get" role="form" accept-charset="utf-8">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-check"></span> Answers</button>
+        </form></p>
+        <p><form class="" action="/users/new" method="get" role="form" accept-charset="utf-8">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> Votes</button>
+        </form></p>
+      </div>
+      </center>
+      <div class="panel-footer">
+        <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete Profile</a>
+        <span class="pull-right">
+          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
+        </span>
+      </div><!-- .panel-footer -->
     </div>
   </div>
+
 </section>

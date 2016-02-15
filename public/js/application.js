@@ -1,3 +1,8 @@
 $(document).ready(function(){
-  console.log("ready");
+  initialize();
+
+  function initialize() {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+
 }); // document

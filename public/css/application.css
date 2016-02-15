@@ -18,6 +18,15 @@ body {
   background: #F5F5F5;
 }
 
+.white-panel-heading .panel-heading {
+  background: white;
+  border-bottom: none;
+}
+
+.white-panel-heading .panel-heading h3 {
+  font-size: 2.5rem;
+}
+
 nav.navbar div.navbar-header .navbar-brand {
   padding: 0px; /* firefox bug fix */
 }
@@ -50,15 +59,6 @@ nav.navbar div.navbar-collapse ul li div.input-group {
 nav.navbar div.navbar-collapse ul div.navbar-form {
   border: none;
   margin-left: -2rem;
-}
-
-section.register .panel .panel-heading {
-  background: white;
-  border-bottom: none;
-}
-
-section.register .panel .panel-heading h3 {
-  font-size: 2.5rem;
 }
 
 footer {

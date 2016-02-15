@@ -17,7 +17,8 @@ end
 get "/users/:id" do
   puts "[LOG] Getting /users/:id"
   puts "[LOG] Params: #{params.inspect}"
-  @user = User.find(params[:id])
+  # @user = User.find(params[:id])
+  @user = current_user
   erb :"static/user"
 end
 
@@ -28,7 +29,7 @@ post "/users/signup" do
 
   if user.save
     session[:user_id] = user.id
-    redirect "/users/:id"
+    redirect "/users/#{user.id}"
   else
     redirect "/"
   end
@@ -42,7 +43,6 @@ post "/users/login" do
   if user
     # byebug
     session[:user_id] = user.id
-    puts "USER ID: #{user.id}"  # HELP
     redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
   else
     redirect "/"
@@ -50,6 +50,7 @@ post "/users/login" do
 end
 
 post "/users/logout" do
+  # session[:user_id] = nil
   session.clear
   redirect "/"
 end
