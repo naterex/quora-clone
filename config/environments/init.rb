@@ -21,6 +21,7 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'uri'
 require 'byebug'
+require 'bcrypt'
 ######################################################################
 
 
@@ -36,6 +37,9 @@ use Rack::Session::Cookie, expire_after: ENV['SESSION_EXPIRE'] || 2592000, # sec
                            logging: true,
                            dump_errors: false,
                            app_file: __FILE__
+
+# Setup assets folder
+set :public_folder, 'public'
 
 # Setup Models (M) and its database
 require APP_ROOT.join('config', 'database')
