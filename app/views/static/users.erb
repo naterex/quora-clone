@@ -1,13 +1,16 @@
 <section class="users">
   <div class="panel panel-default">
     <div class="panel-body">
-      <table class="table table-bordered table-striped">
+      <table class="table table-hover table-striped">
         <caption>Users</caption>
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -18,8 +21,11 @@
             <td><%= user.id %></td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
-            <td>Delete button</td>
-            <td><a href="/users/<%= user.id %>"><button class="btn btn-primary">Edit</button></a></td>
+            <td><a href="#"><button class="btn btn-default"><%= user.question.count %> Questions</button></a></td>
+            <td><a href="#"><button class="btn btn-default">Answers</button></a></td>
+            <td><a href="#"><button class="btn btn-default">Votes</button></a></td>
+            <td><a href="#"><button class="btn btn-danger">Delete user</button></a></td>
+            <td><a href="/users/<%= user.id %>"><button class="btn btn-success">Edit user</button></a></td>
           </tr>
           <% end %>
         </tbody>

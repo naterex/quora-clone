@@ -1,0 +1,29 @@
+<section class="users">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table table-hover table-striped">
+        <caption>Questions</caption>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Poster</th>
+            <th>Content</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| %>
+          <tr>
+            <td><%= question.id %></td>
+            <td><%= question.user.name %></td>
+            <td><%= question.content %></td>
+            <td><a href="/users/<%= user.id %>/questions/<%= question.id %>"><button class="btn btn-success">Delete question</button></a></td>
+            <td><a href="/users/<%= user.id %>/questions/<%= question.id %>"><button class="btn btn-success">Edit question</button></a></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

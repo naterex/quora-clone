@@ -1,65 +1,9 @@
-require 'byebug'
-
-get "/users" do
-  puts "[LOG] Getting /users"
-  puts "[LOG] Params: #{params.inspect}"
-
-  @users = User.all
-  @users = @users.sort_by{ |attribute| attribute[:id] }.reverse # show last added user at top of list
-  erb :"static/users"
-end
-
+# create#new
 get "/users/new" do
   erb :"static/signup"
 end
 
-
-get "/users/:id" do
-  puts "[LOG] Getting /users/:id"
-  puts "[LOG] Params: #{params.inspect}"
-  # @user = User.find(params[:id])
-  @user = current_user
-  erb :"static/user"
-end
-
-# NOT COMPLETE
-get "/users/edit/:id" do
-  puts "[LOG] Getting /users/edit/:id"
-  puts "[LOG] Params: #{params.inspect}"
-  @user = User.find(params[:user][:id])
-
-  erb :"static/edit"
-end
-
-# NOT COMPLETE
-post "/users/update" do
-  puts "[LOG] Getting /users/update"
-  puts "[LOG] Params: #{params.inspect}"
-
-  user = User.find(params[:user][:id])
-
-  if user.save?
-    redirect "/users/#{user.id}"
-  else
-    redirect "/users/edit"
-  end
-end
-
-# NOT COMPLETE
-delete "/users/delete" do
-  puts "[LOG] Getting /users/"
-  puts "[LOG] Params: #{params.inspect}"
-
-  user = User.find(params[:user][:id])
-  user.destroy
-
-  if user.destroyed?
-    redirect "/users/logout"
-  else
-    redirect "/users/edit"
-  end
-end
-
+# create#create
 post "/users/signup" do
   puts "[LOG] Getting /users/signup"
   puts "[LOG] Params: #{params.inspect}"
@@ -73,6 +17,68 @@ post "/users/signup" do
   end
 end
 
+# read#show
+get "/users/:id" do
+  puts "[LOG] Getting /users/:id"
+  puts "[LOG] Params: #{params.inspect}"
+  # @user = User.find(params[:id])
+  @user = current_user()
+  erb :"static/user"
+end
+
+# read#index
+get "/users" do
+  puts "[LOG] Getting /users"
+  puts "[LOG] Params: #{params.inspect}"
+
+  @users = User.all
+  @users = @users.sort_by{ |attribute| attribute[:id] }.reverse # show last added user at top of list
+  erb :"static/users"
+end
+
+
+# NOT COMPLETE
+# update#edit
+get "/users/:id/edit" do
+  puts "[LOG] Getting /users/edit/:id"
+  puts "[LOG] Params: #{params.inspect}"
+  @user = User.find(params[:user][:id])
+
+  erb :"static/user_edit"
+end
+
+# NOT COMPLETE
+# update#update
+patch "/users/:id/update" do
+  puts "[LOG] Getting /users/update"
+  puts "[LOG] Params: #{params.inspect}"
+
+  user = User.find(params[:user][:id])
+
+  if user.save?
+    redirect "/users/#{user.id}"
+  else
+    redirect "/users/edit"
+  end
+end
+
+# NOT COMPLETE
+# delete#destroy
+delete "/users/:id/delete" do
+  puts "[LOG] Getting /users/"
+  puts "[LOG] Params: #{params.inspect}"
+
+  user = User.find(params[:user][:id])
+  user.destroy
+
+  if user.destroyed?
+    redirect "/users/logout"
+  else
+    redirect "/users/edit"
+  end
+end
+
+# login
 post "/users/login" do
   puts "[LOG] Getting /users/login"
   puts "[LOG] Params: #{params.inspect}"
@@ -88,8 +94,9 @@ post "/users/login" do
   end
 end
 
+# logout
 post "/users/logout" do
-  # session[:user_id] = nil
+  # session[:user_id] = nil # can also use this to clear session
   session.clear
   redirect "/"
 end

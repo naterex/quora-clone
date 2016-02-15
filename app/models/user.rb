@@ -1,4 +1,3 @@
-
 class User < ActiveRecord::Base
   validates_presence_of :name, message: "Error: name can't be blank."
   validates_presence_of :email, message: "Error: email can't be blank."
@@ -6,7 +5,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Error: incorrect email format."
   has_secure_password
 
-  attr_accessor :password
+  # NEEDED TO UPDATE PASSWORD?
+  # attr_accessor :password
+
+  has_many :questions
 
   def self.authenticate(email, password)
     @user = User.find_by(email: email)
