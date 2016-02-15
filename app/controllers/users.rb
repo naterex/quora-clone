@@ -9,15 +9,16 @@ get "/users" do
   erb :"static/users"
 end
 
+get "/users/new" do
+  erb :"static/signup"
+end
+
+
 get "/users/:id" do
   puts "[LOG] Getting /users/:id"
   puts "[LOG] Params: #{params.inspect}"
   @user = User.find(params[:id])
   erb :"static/user"
-end
-
-get "/users/new" do
-  erb :"static/signup"
 end
 
 post "/users/signup" do
@@ -39,7 +40,7 @@ post "/users/login" do
   user = User.authenticate(params[:user][:email], params[:user][:password])
 
   if user
-    byebug
+    # byebug
     session[:user_id] = user.id
     puts "USER ID: #{user.id}"  # HELP
     redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
