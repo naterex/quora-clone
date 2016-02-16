@@ -44,21 +44,21 @@ nav.navbar div.navbar-collapse.in {
 }
 
 nav.navbar div.navbar-collapse {
-  margin-right: -3rem; /* move navbar to far right of page */
+  margin-right: -1.64rem; /* move navbar to far right of page */
 }
 
 nav.navbar div.navbar-collapse ul li:first-child p {
-  margin-left: -1.5rem; /* reduce forgot password? margin to fit ipad vieww */
-  margin-right: -1.5rem;
+   margin-left: -1.4rem; /* reduce forgot password? margin to fit ipad vieww */
+   margin-right: -1.4rem;
 }
 
 nav.navbar div.navbar-collapse ul li div.input-group {
-  width: 19.5rem;  /* reduce login input width to fit ipad view */
+  width: 19.5rem; /* reduce login input width to fit ipad view
 }
 
 nav.navbar div.navbar-collapse ul div.navbar-form {
   border: none;
-  margin-left: -2rem;
+  /*margin-left: -1.8rem;*/
 }
 
 footer {
