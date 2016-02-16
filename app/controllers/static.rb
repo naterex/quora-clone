@@ -5,7 +5,7 @@ get '/' do
     @user = current_user()
     erb :"questions/questions"
   else
-    erb :"static/index"
+    erb :"questions/questions"
   end
 
 end

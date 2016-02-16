@@ -1,6 +1,6 @@
 # create#new
 get "/users/:user_id/questions/new" do
-  user = User.find(params[:user_id])
+  @user = User.find(params[:user_id])
   erb :"questions/question_new"
 end
 
@@ -59,7 +59,7 @@ get "/users/:user_id/questions/:id/edit" do
 end
 
 # update#update
-patch "/users/:user_id/questions/:id/update" do
+post "/users/:user_id/questions/:id/update" do
   puts "[LOG] Getting /questions/:id/update"
   puts "[LOG] Params: #{params.inspect}"
   puts ""
@@ -67,7 +67,7 @@ patch "/users/:user_id/questions/:id/update" do
   user = User.find(params[:user_id])
   question = user.questions.find(params[:id])
   @params = params[:question]
-
+  # byebug
   @params.each do |p|
     key = p[0].to_sym
     value = p[1]
