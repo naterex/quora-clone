@@ -1,0 +1,45 @@
+<section class="answer_new">
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="panel panel-default white-panel-heading">
+        <% if logged_in? %>
+          <div class="panel-heading">
+              <div class="form-group">
+                <a href="/users/<%= @question.user.id %>/questions/<%= @question.id %>"><button class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button></a>
+              </div>
+              <center>
+                <h3 class="panel-title"><%= @question.content %></h3>
+              </center>
+            </div>
+          <div class="panel-body">
+
+            <!-- <div id="login-alert" class="alert alert-danger col-sm-12"></div> -->
+            <form class="form-horizontal" action="/questions/<%= @question.id %>/answers/create" method="post" accept-charset="utf-8">
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input name="answer[content]" id="inputAnswer" placeholder="Enter answer here..."class="form-control"></input>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <button type="submit" class="btn btn-success btn-block">Submit</button>
+                </div>
+              </div>
+
+            </form>
+          </div><!-- .panel-body -->
+        <% else %>
+          <div class="panel-heading">
+            <div class="form-group">
+              <a href="/"><button class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button></a>
+            </div>
+            <h4>Please login or signup to answer the question</h4>
+          </div>
+        <% end %>
+      </div><!-- .panel -->
+    </div><!-- .col-sm-8 -->
+
+</section><!-- .answer_new -->
+

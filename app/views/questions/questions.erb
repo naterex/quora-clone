@@ -4,14 +4,18 @@
 <!--       <div class="form-group">
         <a href="/"><button class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button></a>
       </div> -->
+      <center>
+        <h3><%= @index_title %></h3>
+      </center>
     </div>
     <div class="panel-body">
       <% @questions.each do |question| %>
         <span class="label pull-right">
+
           <% if session[:user_id] == question.user.id %>
             <br>
             <form action="/users/<%= question.user.id %>/questions/<%= question.id %>/delete" method="post" class="form-inline" role="form" accept-charset="utf-8">
-              <div class="form-group">
+            <div class="form-group">
                 <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                 <a href="/users/<%= question.user.id %>/questions/<%= question.id %>/edit"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
               </div>
@@ -23,7 +27,7 @@
             <h4><%= question.content %></h4>
           </a>
           <small>
-            <span class="label label-default">42</span> Answers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label label-default"><%= question.answers.count %></span> Answers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
           </small>

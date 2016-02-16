@@ -108,8 +108,10 @@ post "/users/login" do
   if user
     session[:user_id] = user.id
     session[:notice] = "You logged in successfully."
+    # redirect "/users/#{user.id}/questions"
     redirect "/"
   else
+    session[:error] = user.errors.full_messages.first
     redirect "/"
   end
 end

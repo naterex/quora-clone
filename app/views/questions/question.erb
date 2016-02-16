@@ -4,24 +4,23 @@
       <div class="form-group">
         <a href="/users/<%= @question.user.id %>/questions"><button class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button></a>
       </div>
-      <% if session[:user_id] == @question.user.id %>
 
+      <% if session[:user_id] == @question.user.id %>
         <span class="label pull-right">
           <br>
-          <% if session[:user_id] == @question.user.id %>
-            <form action="/users/<%= @question.user.id %>/questions/<%= @question.id %>/delete" method="post" class="form-inline" role="form" accept-charset="utf-8">
-              <div class="form-group">
-                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-                <a href="/users/<%= @question.user.id %>/questions/<%= @question.id %>/edit"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
-              </div>
-            </form>
-          <% end %>
+          <form action="/users/<%= @question.user.id %>/questions/<%= @question.id %>/delete" method="post" class="form-inline" role="form" accept-charset="utf-8">
+            <div class="form-group">
+              <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+              <a href="/users/<%= @question.user.id %>/questions/<%= @question.id %>/edit"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
+            </div>
+          </form>
         </span>
-
       <% end %>
+
       <blockquote>
         <h3><%= @question.content %></h3>
         <small>
+            <a href="/questions/<%= @question.id %>/answers/new"><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-check"></i> Answer this question</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <span class="label label-default">42</span> Answers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
@@ -31,34 +30,33 @@
     </div>
     <div class="panel-body">
       <div class="list-group list-group-answers">
-        <hr>
-        <li class="list-group-item">
-          <h4 class="list-group-heading">Poster</h4>
-          <h4 class="list-group-text">
-            <p><small>
-              Pabst gochujang pug try-hard, synth sriracha blue bottle messenger bag squid. Lo-fi irony etsy, chia kitsch man braid put a bird on it vegan knausgaard ethical fingerstache. Cronut mustache crucifix kale chips, actually skateboard disrupt heirloom. Hammock vice hashtag, umami next level aesthetic echo park swag twee tofu cronut helvetica venmo biodiesel. Church-key single-origin coffee offal, before they sold out iPhone bushwick flannel dreamcatcher street art seitan.</small>
-            <p>
-            <small>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
-            </small>
-          </h4>
-        </li>
-        <hr>
-        <li class="list-group-item">
-          <h4 class="list-group-heading">Poster</h4>
-          <h4 class="list-group-text">
-            <p><small>
-              Pabst gochujang pug try-hard, synth sriracha blue bottle messenger bag squid. Lo-fi irony etsy, chia kitsch man braid put a bird on it vegan knausgaard ethical fingerstache. Cronut mustache crucifix kale chips, actually skateboard disrupt heirloom. Hammock vice hashtag, umami next level aesthetic echo park swag twee tofu cronut helvetica venmo biodiesel. Church-key single-origin coffee offal, before they sold out iPhone bushwick flannel dreamcatcher street art seitan.</small>
-            <p>
-            <small>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
-            </small>
-          </h4>
-        </li>
+        <% @question.answers.each do |answer| %>
+          <hr>
+          <li class="list-group-item">
+            <% if session[:user_id] == answer.user.id %>
+              <span class="label pull-right">
+                <br>
+                <form action="/users/<%= answer.user.id %>/answers/<%= answer.id %>/delete" method="post" class="form-inline" role="form" accept-charset="utf-8">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                    <a href="/questions/<%= answer.question.id %>/answers/<%= answer.id %>/edit"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
+                  </div>
+                </form>
+              </span>
+            <% end %>
+            <h4 class="list-group-heading"><%= answer.user.name %> answered:</h4>
+            <h3 class="list-group-text">
+              <p>
+                <small><%= answer.content %></small>
+              <p>
+              <small>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
+              </small>
+            </h3>
+          </li>
+        <% end %>
       </div>
     </div>
   </div>

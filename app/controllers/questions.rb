@@ -44,6 +44,7 @@ get "/users/:user_id/questions" do
   @questions = user.questions.all
 
   @questions = @questions.sort_by{ |attribute| attribute[:id] }.reverse # show last added question at top of list
+  @index_title = "My Questions"
   erb :"questions/questions"
 end
 
