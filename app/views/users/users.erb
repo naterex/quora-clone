@@ -1,6 +1,7 @@
 <section class="users">
   <div class="panel panel-default">
     <div class="panel-body">
+    <% unless @users.nil? %>
       <table class="table table-hover table-striped">
         <caption>Users</caption>
         <thead>
@@ -8,7 +9,6 @@
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
-            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -24,12 +24,14 @@
             <td><a href="#"><button class="btn btn-default"><%= user.questions.count %> Questions</button></a></td>
             <td><a href="#"><button class="btn btn-default">Answers</button></a></td>
             <td><a href="#"><button class="btn btn-default">Votes</button></a></td>
-            <td><a href="#"><button class="btn btn-danger">Delete user</button></a></td>
             <td><a href="/users/<%= user.id %>"><button class="btn btn-success">Edit user</button></a></td>
           </tr>
           <% end %>
         </tbody>
       </table>
+    <% else %>
+      <h2>There are no users.</h2>
+    <% end %>
     </div>
   </div>
 </section>

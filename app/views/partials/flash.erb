@@ -1,0 +1,33 @@
+<div class="container">
+  <section class="flash col-sm-offset-3 col-sm-6">
+
+    <% unless session[:error].nil? %>
+      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span id="span_error" class="sr-only">Error:</span>
+
+          <%= session[:error] %>
+          <%= session[:error] = nil %>
+
+      </div><!-- .alert -->
+    <% end %>
+
+    <% unless session[:notice].nil? %>
+      <div class="alert alert-success alert-dismissible fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span id="span_error" class="sr-only">Notice:</span>
+
+          <%= session[:notice] %>
+          <%= session[:notice] = nil %>
+
+      </div><!-- .alert -->
+    <% end %>
+
+  </section><!-- .flash -->
+</div><!-- .container -->

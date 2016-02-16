@@ -27,9 +27,6 @@ gem 'rspec'
 # Adding secure passwords
 gem 'bcrypt'
 
-# Adding flash messages
-gem 'sinatra-flash', '~> 0.3.0'
-
 group :development, :test do
 	# Adding shotgun for local web hosting
 	gem 'shotgun'

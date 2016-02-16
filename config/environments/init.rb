@@ -16,8 +16,6 @@ require 'logger'
 	# sinatra
 require 'sinatra'
 require "sinatra/reloader" if development?
-require 'sinatra/flash'
-enable :sessions
 
   # embedded ruby
 require 'erb'
