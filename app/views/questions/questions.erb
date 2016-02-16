@@ -1,29 +1,34 @@
 <section class="questions">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <table class="table table-hover table-striped">
-        <caption>Questions</caption>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Poster</th>
-            <th>Content</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @questions.each do |question| %>
-          <tr>
-            <td><%= question.id %></td>
-            <td><%= question.user.name %></td>
-            <td><%= question.content %></td>
-            <td><a href="/users/<%= question.user.id %>/questions/<%= question.id %>"><button class="btn btn-success">Delete question</button></a></td>
-            <td><a href="/users/<%= question.user.id %>/questions/<%= question.id %>"><button class="btn btn-success">Edit question</button></a></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+  <div class="panel panel-default white-panel-heading">
+    <div class="panel-heading">
+      <div class="form-group">
+        <a href="/"><button class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button></a>
+      </div>
     </div>
-  </div>
+    <div class="panel-body">
+      <% @questions.each do |question| %>
+        <span class="label pull-right">
+          <% if session[:user_id] == question.user.id %>
+            <br>
+            <form action="/users/<%= question.user.id %>/questions/<%= question.id %>/delete" method="post" class="form-inline" role="form" accept-charset="utf-8">
+              <div class="form-group">
+                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                <a href="/users/<%= question.user.id %>/questions/<%= question.id %>/edit"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit</button></a>
+              </div>
+            </form>
+          <% end %>
+        </span>
+        <blockquote>
+          <a href="/users/<%= question.user.id %>/questions/<%= question.id %>">
+            <h4><%= question.content %></h4>
+          </a>
+          <small>
+            <span class="label label-default">42</span> Answers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label label-success"><span class="glyphicon glyphicon-chevron-up"></span>42</span> Upvotes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label label-danger"><span class="glyphicon glyphicon-chevron-down"></span>42</span> Downvotes
+          </small>
+        </blockquote>
+      <% end %>
+    </div><!-- .panel-body -->
+  </div><!-- .panel -->
 </section>

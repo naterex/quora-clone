@@ -73,6 +73,7 @@ post "/users/:id/update" do
     session[:notice] = "You edited your info successfully."
     redirect "/users/#{user.id}"
   else
+    session[:error] = user.errors.full_messages.first
     redirect "/users/#{user.id}/edit"
   end
 end
@@ -91,6 +92,7 @@ post "/users/:id/delete" do
     session[:notice] = "You signed deleted your account successfully."
     redirect "/"
   else
+    session[:error] = user.errors.full_messages.first
     redirect "/users/#{user.id}/edit"
   end
 end

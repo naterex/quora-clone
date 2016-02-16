@@ -1,0 +1,33 @@
+<section class="question_edit">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default white-panel-heading">
+      <center>
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @question.content %></h3>
+      </div>
+      </center>
+      <div class="panel-body">
+        <form class="form-horizontal" action="/users/<%= @question.user.id %>/questions/<%= @question.id %>/update" method="post" accept-charset="utf-8">
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input name="question[content]" type="text" placeholder="<%= @question.content %>" class="form-control">
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+
+            <span class="pull-right">
+              <button id="save" type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Save</button>
+            </span>
+            <div class="form-group">
+              <a href="/users/<%= @question.user.id %>/questions"><button id="cancel" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</button></a>
+            </div>
+          </div>
+
+        </form>
+      </div><!-- .panel-body -->
+    </div><!-- .panel -->
+  </div><!-- .col-sm-6 -->
+
+</section>
