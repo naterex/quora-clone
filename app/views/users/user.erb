@@ -8,7 +8,7 @@
       </div>
       <div class="panel-body">
         <p><%= @user.email %></p>
-        <p><form class="" action="/users/new" method="get" role="form" accept-charset="utf-8">
+        <p><form class="" action="/users/<%= @user.id %>/questions/new" method="get" role="form" accept-charset="utf-8">
           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span> Questions</button>
         </form></p>
         <p><form class="" action="/users/new" method="get" role="form" accept-charset="utf-8">
@@ -21,13 +21,13 @@
       </center>
       <div class="panel-footer clearfix">
         <span class="pull-left">
-        <form action="/users/delete" method="delete" role="form" accept-charset="utf-8">
+        <form action="/users/<%= @user.id %>/delete" method="post" role="form" accept-charset="utf-8">
           <button type="submit" data-original-title="Remove this user" data-toggle="tooltip" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete Profile</button>
         </form>
         </span>
         <span class="pull-right">
-          <form action="/users/:id/edit" method="get" role="form" accept-charset="utf-8">
-            <input name="user[id]" type="submit" data-original-title="Edit this user" data-toggle="tooltip" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit Profile</input>
+          <form action="/users/<%= @user.id %>/edit" method="get" role="form" accept-charset="utf-8">
+            <button type="submit" data-original-title="Edit this user" data-toggle="tooltip" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit Profile</button>
           </form>
         </span>
       </div><!-- .panel-footer -->

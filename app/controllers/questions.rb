@@ -9,9 +9,13 @@ post "/users/:user_id/questions/create" do
   puts "[LOG] Getting /questions/create"
   puts "[LOG] Params: #{params.inspect}"
 
-  question = Question.new(params[:question])
+  user = current_user()
+  question = user.questions.new(content: params[:question][:content], user_id: user.id)
+
   if question.save
+    redirect "/users/#{user.id}/questions"
   else
+    redirect "/users/#{user.id}/questions/new"
   end
 
 end
@@ -50,7 +54,7 @@ patch "/users/:user_id/questions/:id/update" do
 end
 
 # delete#destroy
-delete "/users/:user_id/questions/:id/delete" do
+post "/users/:user_id/questions/:id/delete" do
   puts "[LOG] Getting /questions/:id/delete"
   puts "[LOG] Params: #{params.inspect}"
 

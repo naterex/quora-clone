@@ -36,45 +36,55 @@ get "/users" do
   erb :"users/users"
 end
 
-
 # NOT COMPLETE
 # update#edit
 get "/users/:id/edit" do
-  puts "[LOG] Getting /users/edit/:id"
+  puts "[LOG] Getting /users/:id/edit"
   puts "[LOG] Params: #{params.inspect}"
-  @user = User.find(params[:user][:id])
+  @user = User.find(params[:id])
 
-  erb :"users/user_edit"
+  erb :"/users/user_edit"
 end
 
 # NOT COMPLETE
 # update#update
-patch "/users/:id/update" do
-  puts "[LOG] Getting /users/update"
+post "/users/:id/update" do
+  puts "[LOG] Getting /users/:id/update"
   puts "[LOG] Params: #{params.inspect}"
 
-  user = User.find(params[:user][:id])
+  user = User.find(params[:id])
+  @params = params[:user]
 
-  if user.save?
+  @params.each do |p|
+    key = p[0].to_sym
+    value = p[1]
+    if value == ""
+    else
+      byebug
+      user[key] = value
+    end
+  end
+
+  if user.save
     redirect "/users/#{user.id}"
   else
-    redirect "/users/edit"
+    redirect "/users/#{user.id}/edit"
   end
 end
 
-# NOT COMPLETE
 # delete#destroy
-delete "/users/:id/delete" do
-  puts "[LOG] Getting /users/"
+post "/users/:id/delete" do
+  puts "[LOG] Getting /users/:id/delete"
   puts "[LOG] Params: #{params.inspect}"
 
-  user = User.find(params[:user][:id])
+  user = User.find(params[:id])
   user.destroy
 
   if user.destroyed?
-    redirect "/users/logout"
+    session.clear
+    redirect "/"
   else
-    redirect "/users/edit"
+    redirect "/users/#{user.id}/edit"
   end
 end
 
@@ -85,17 +95,15 @@ post "/users/login" do
   user = User.authenticate(params[:user][:email], params[:user][:password])
 
   if user
-    # byebug
     session[:user_id] = user.id
     redirect "/"
-    # redirect "/users/#{user.id}" # correct to use redirect to pass users/:id method?
   else
     redirect "/"
   end
 end
 
 # logout
-post "/users/logout" do
+post "/logout" do
   # session[:user_id] = nil # can also use this to clear session
   session.clear
   redirect "/"

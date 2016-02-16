@@ -8,38 +8,42 @@
       </div>
       </center>
       <div class="panel-body">
-        <form class="form-horizontal" action="/users/:id/update" method="patch" accept-charset="utf-8">
+        <form class="form-horizontal" action="/users/<%= @user.id %>/update" method="post" accept-charset="utf-8">
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input name="user[name]" type="text" placeholder="<%= user.name %>" class="form-control" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input name="user[email]" type="email" placeholder="<%= user.email %>" class="form-control" required>
+              <input name="user[name]" type="text" placeholder="<%= @user.name %>" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input name="user[password]" type="password" placeholder="<%= user.password %>" class="form-control" required>
+              <input name="user[email]" type="email" placeholder="<%= @user.email %>" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input name="user[password_confirmation]" type="password" placeholder="confirm password" class="form-control" required>
+              <label for="password">Enter new password, otherwise leave blank</label>
+              <input name="user[password]" type="password" placeholder="password" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-8">
-              <button id="save" type="submit" name="save" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Save</button>
-              <a href=""><button id="cancel" name="cancel" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</button></a>
+            <div class="col-sm-12">
+              <input name="user[password_confirmation]" type="password" placeholder="confirm password" class="form-control">
             </div>
           </div>
+
+          <div class="col-sm-12">
+            <span class="pull-right">
+              <button id="save" type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Save</button>
+            </span>
+            <div class="form-group">
+              <a href="/users/<%= @user.id %>"><button id="cancel" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</button></a>
+            </div>
+          </div>
+
         </form>
       </div><!-- .panel-body -->
     </div><!-- .panel -->

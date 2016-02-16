@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Error: incorrect email format."
   has_secure_password
 
-  # NEEDED TO UPDATE PASSWORD?
-  # attr_accessor :password
-
-  has_many :questions
+  has_many :questions, dependent: :destroy
+  # has_many :answers, dependent: :destroy
+  # has_many :votes_questions, dependent: :destroy
+  # has_many :votes_answers, dependent: :destroy
 
   def self.authenticate(email, password)
     @user = User.find_by(email: email)
